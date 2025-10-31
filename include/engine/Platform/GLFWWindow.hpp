@@ -1,25 +1,19 @@
 /*
-MIT License
+Antutu Vulkan Engine
+Copyright (C) 2025 Quangnam1423
 
-Copyright (c) 2025 Quangnam1423
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
 // =========================GLFWWindow.hpp=========================
@@ -32,7 +26,7 @@ SOFTWARE.
 #include <stdexcept>
 #include <iostream>
 
-#include "common/Event.hpp"
+#include "../Core/Event.hpp"
 #include "config/config.h"
 
 class GLFWWindow {
@@ -70,7 +64,11 @@ private:
     static void mouseMoveCallback(GLFWwindow* window, double xpos, double ypos);                // mouse move
     static void mouseScrollCallback(GLFWwindow* window, double xoffset, double yoffset);        // mouse scroll
     static void cursorPosCallback(GLFWwindow* window, double xpos, double ypos);                // cursor position
-    static void charInputCallback(GLFWwindow* window, unsigned int codepoint);                  // char input
+    static void charInputCallback(GLFWwindow* window, unsigned int codepoint);   
+    
+private:
+    //create vulkan instance
+    void createVulkanInstance();                        // create Vulkan instance
 
 private:
     std::string m_title;                // Window title
@@ -79,7 +77,7 @@ private:
     bool m_framebufferResized;          // Framebuffer resized flag
     GLFWwindow* m_window;               // GLFW window pointer
     VkInstance m_vulkanInstance;        // Vulkan instance
-
+    VkSurfaceKHR m_surface;             // Vulkan surface
     static uint32_t s_windowCount;      // Static count of windows
 };
 
