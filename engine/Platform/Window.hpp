@@ -16,7 +16,7 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-// =========================GLFWWindow.hpp=========================
+// =========================Antutu::Window.hpp=========================
 
 
 #ifndef ANTUTU_WINDOW_HPP
@@ -26,37 +26,45 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 #include <GLFW/glfw3.h>
 #include <string>
-
 namespace Antutu {
-    
+    // ======================Window Class Declaration==================
 
-    // ==========Window Class Declaration==================
+    /**
+     * @class Window
+     * @brief A class that encapsulates a GLFW window for Vulkan applications.
+     * This class handles window creation, event polling, and provides access to the native GLFW window.
+     * It initializes GLFW and creates a window with specified dimensions and title.
+     * It also ensures proper cleanup of resources upon destruction.
+     * @note This class does not create an OpenGL context, as it is intended for Vulkan use.
+     * @author Quangnam1423
+     */
     class Window {
     public:
-        Window();                                                   // constructor
-        Window(int width, int height, const std::string& title);    // parameterized constructor
-        ~Window();                                                  // destructor 
+        Window();                                                       // constructor
+        Window(int width, int height, const std::string& title);        // parameterized constructor
+        ~Window();                                                      // destructor 
 
-        Window(const Window&) = delete;                             // delete copy constructor
-        Window& operator=(const Window&) = delete;                  // delete copy assignment
-        Window(Window&&) = delete;                                  // delete move constructor
-        Window& operator=(Window&&) = delete;                       // delete move assignment
+        Window(const Window&) = delete;                                 // delete copy constructor
+        Window& operator=(const Window&) = delete;                      // delete copy assignment
+        Window(Window&&) = delete;                                      // delete move constructor
+        Window& operator=(Window&&) = delete;                           // delete move assignment
 
-        bool ShouldClose() const;                               // check if window should close
-        void PollEvents() const;                                // poll window events
-        GLFWwindow* GetNativeWindow() const;                      // get the GLFW window pointer
+        bool ShouldClose() const;                                       // check if window should close
+        void PollEvents() const;                                        // poll window events
+        GLFWwindow* GetNativeWindow() const;                            // get the GLFW window pointer
 
-        // getter and setter for width and height
+        // ======getter and setter for width and height=================
         inline int GetWidth() const { return m_width; }
         inline int GetHeight() const { return m_height; }
         inline void SetWidth(int width) { m_width = width; }
         inline void SetHeight(int height) { m_height = height; }
-    private:
-        GLFWwindow* m_window;               // GLFW window pointer
-        int m_width;
-        int m_height;
-        std::string m_title;
-    };
+
+    private:  // private members
+        GLFWwindow* m_window;                                           // GLFW window pointer
+        int m_width;                                                    // window width
+        int m_height;                                                   // window height
+        std::string m_title;                                            // window title
+    }; // End of Window class
 }
 
 #endif // ANTUTU_WINDOW_HPP
