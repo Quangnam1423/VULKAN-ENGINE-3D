@@ -1,16 +1,21 @@
 # CMake configuration for VulkanEngine
-cmake_minimum_required(VERSION 3.10)
+cmake_minimum_required(VERSION 3.10.2)
 
 # Define the project name and supported languages
-project(VulkanEngine LANGUAGES C CXX)
+project(Antutu LANGUAGES C CXX)
+
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS OFF)
+
 
 find_package(Vulkan REQUIRED)
 find_package(glfw3 REQUIRED)
 find_package(glm REQUIRED)
 
 add_executable(${PROJECT_NAME} 
-    main.cpp
-    include/stb_image.h
+    runtime/main.cpp
+    engine/Platform/Window.cpp
 )   
 
 target_include_directories(${PROJECT_NAME} PRIVATE 

@@ -17,8 +17,8 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
 // =========================GLFWWindow.cpp=========================
-#ifndef EVENT_HPP
-#define EVENT_HPP
+#ifndef SIGNAL_HPP
+#define SIGNAL_HPP
 
 #include <functional>
 #include <unordered_map>
@@ -26,17 +26,17 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 namespace Antutu {
     template<typename... Args>
-    class Event {
+    class Signal {
     public:
         using CallbackType = std::function<void(Args...)>;                  // Define the callback type
 
-        Event() = default;                                                  // default constructor
-        ~Event() = default;                                                 // default destructor
+        Signal() = default;                                                  // default constructor
+        ~Signal() = default;                                                 // default destructor
 
-        Event(const Event&) = delete;                                       // delete copy constructor
-        Event& operator=(const Event&) = delete;                            // delete copy assignment
-        Event(Event&&) = delete;                                            // delete move constructor
-        Event& operator=(Event&&) = delete;                                 // delete move assignment
+        Signal(const Signal&) = delete;                                     // delete copy constructor
+        Signal& operator=(const Signal&) = delete;                          // delete copy assignment
+        Signal(Signal&&) = delete;                                          // delete move constructor
+        Signal& operator=(Signal&&) = delete;                               // delete move assignment
 
         /**
          * @brief Subscribe to the event with a callback function.
@@ -95,4 +95,4 @@ namespace Antutu {
     };
 } // namespace Antutu
 
-#endif // EVENT_HPP
+#endif // SIGNAL_HPP
