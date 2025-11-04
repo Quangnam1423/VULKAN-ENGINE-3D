@@ -121,5 +121,10 @@ Antutu/
 
 ``` road map
 1. editor/EditorApp.cpp (main.cpp): this file con
+2. create VulkanInstance to manage VkInstance
+    2.1 VkInstance: manager global condition, extension, validation layers.
+    2.2 VkSurfaceKHR: stand for surface window connect Vulkan to GLFWwindow.
+    2.3 VkPhysicalDevice: stand for physics graphics card (GPU).
+    2.4 VkDevice: Stande for logical device, main UI for command GPU.
 
 ```

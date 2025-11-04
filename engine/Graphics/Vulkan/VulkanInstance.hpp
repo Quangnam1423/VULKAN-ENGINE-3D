@@ -50,16 +50,25 @@ namespace Antutu {
         VulkanInstance& operator=(VulkanInstance&&) = delete;
 
         VkInstance GetInstance() const;
-
+        
     private:
-        VkInstance m_instance;
-        VkDebugUtilsMessengerEXT m_debugMessenger;
-        bool m_enableValidationLayers;
-
         void CreateInstance(const std::string& appName, 
             const std::vector<const char*>& requiredExtensions);
 
         std::vector<const char*> GetValidationLayers() const;
+
+        bool CheckValidationLayerSupport() const;
+
+        static VKAPI_ATTR VkBool32 VKAPI_CALL DebugCallback(
+            VkDebugUtilsMessageSeverityFlagBitsEXT messageSeverity,
+            VkDebugUtilsMessageTypeFlagsEXT messageType,
+            const VkDebugUtilsMessengerCallbackDataEXT* pCallbackData,
+            void* pUserData);
+            
+    private:
+        VkInstance m_instance;
+        VkDebugUtilsMessengerEXT m_debugMessenger;
+        bool m_enableValidationLayers;
     };
 }
 
